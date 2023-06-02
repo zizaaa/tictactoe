@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tictactoe</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- game mode -->
+    <div class="container" id="container">
+            <h1>TicTacToe</h1>
+            <div class="gameMode-container">
+                <div id="pvbot">
+                    <i class="fa-solid fa-user"></i>
+                    <h1 class="pvbot">Player Vs. AI</h1>
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div id="pvp">
+                    <i class="fa-solid fa-user"></i>
+                    <h1 class="pvbot">Player Vs. Player</h1>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+    </div>
+    <div class="pvpNames-container">
+        <div class="player-1-name">
+            <input type="text" id="player_1_name" placeholder="Player 1">
+            <button type="button" id="player_1_Btn">Next</button>
+        </div>
+        <div class="player-2-name">
+            <input type="text" id="player_2_name" placeholder="Player 2">
+            <button type="button" id="player_2_Btn">Next</button>
+        </div>
+        <div class="rounds">
+            <p>Select rounds:</p>
+            <button type="button" id="round_5">5 rounds</button>
+            <button type="button" id="round_10">10 rounds</button>
+        </div>
+    </div>
+
+    <!-- pvp -->
+    <div class="playerVSbot-container">
+        <span class="span_1" id="firstLine_1"></span>
+        <span class="span_2" id="firstLine_2"></span>
+        <span class="span_3" id="firstLine_3"></span>
+        <span class="span_4" id="secondLine_1"></span>
+        <span class="span_5" id="secondLine_2"></span>
+        <span class="span_6" id="secondLine_3"></span>
+        <span class="span_7" id="thirdLine_1"></span>
+        <span class="span_8" id="thirdLine_2"></span>
+        <span class="span_9" id="thirdLine_3"></span>
+    </div>
+    <div class="playerScores">
+        <div class="player_1">
+            <span id="name_1">brand x</span>
+            <span id="player_1_Score">00</span>
+        </div>
+        <div class="tieScore">
+            <span id="tie">TIE</span>
+            <span id="tie_Score">00</span>
+        </div>
+        <div class="player_2">
+            <span id="name_2">brand o</span>
+            <span id="player_2_Score">00</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
