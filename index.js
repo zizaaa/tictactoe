@@ -96,6 +96,7 @@ document.getElementById('round_10').addEventListener('click',()=>{
         let botScores = 0;
 
         let attack ='';
+        let botAttacking = false;
         const rands=()=>{
             let aifirstLine = ['firstLine_1','firstLine_2','firstLine_3'];
             let aisecondLine = ['secondLine_1','secondLine_2','secondLine_3'];
@@ -143,21 +144,22 @@ document.getElementById('round_10').addEventListener('click',()=>{
             },500);
         } 
 const pvpGame = ()=>{
-
     document.querySelector('.playerVSbot-container').addEventListener('click',(e)=>{
         let id = e.target.id;
+            rands();
         //firstLine index of 0
-        
             if(player_1.attacking && id == 'firstLine_1' && firstLine[0] === ''){
                 document.getElementById(`${id}`).innerHTML = player_1.attack;
                 firstLine[0] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                    
-                    if(gameMode === 'pvb'){
-                        rands();
+
+                    if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = true;
+                    }else if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = false;
                     }
-                
+
             }else if(gameMode === 'pvp' && firstLine[0] === '' && player_2.attacking && id == 'firstLine_1'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 firstLine[0] = player_2.attack
@@ -171,126 +173,146 @@ const pvpGame = ()=>{
                 console.log(secondLine);
                 console.log(thirdLine);
                 console.log('attack', attack);
-                if(attack === undefined){
+
+                if(botAttacking && attack === undefined){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;   
                     }
                     })
                 }
-                if(gameMode === 'pvb' && firstLine[0] === '' && attack == 'firstLine_1'){
+                if(botAttacking && gameMode === 'pvb' && firstLine[0] === '' && attack == 'firstLine_1'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     firstLine[0] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && firstLine[0] != '' && attack == 'firstLine_1'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && firstLine[0] != '' && attack == 'firstLine_1'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
-                if(gameMode === 'pvb' && firstLine[1] === '' && attack == 'firstLine_2'){
+                if(botAttacking && gameMode === 'pvb' && firstLine[1] === '' && attack == 'firstLine_2'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     firstLine[1] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && firstLine[1] != '' && attack == 'firstLine_2'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && firstLine[1] != '' && attack == 'firstLine_2'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && firstLine[2] === '' && attack == 'firstLine_3'){
+                if(botAttacking && gameMode === 'pvb' && firstLine[2] === '' && attack == 'firstLine_3'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     firstLine[2] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && firstLine[2] != '' && attack == 'firstLine_3'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && firstLine[2] != '' && attack == 'firstLine_3'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && secondLine[0] === '' && attack == 'secondLine_1'){
+                if(botAttacking && gameMode === 'pvb' && secondLine[0] === '' && attack == 'secondLine_1'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     secondLine[0] ='O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && secondLine[0] != '' && attack == 'secondLine_1'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && secondLine[0] != '' && attack == 'secondLine_1'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && secondLine[1] === '' && attack == 'secondLine_2'){
+                if(botAttacking && gameMode === 'pvb' && secondLine[1] === '' && attack == 'secondLine_2'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     secondLine[1] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && secondLine[1] != '' && attack == 'secondLine_2'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && secondLine[1] != '' && attack == 'secondLine_2'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && secondLine[2] === '' && attack == 'secondLine_3'){
+                if(botAttacking && gameMode === 'pvb' && secondLine[2] === '' && attack == 'secondLine_3'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     secondLine[2] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && secondLine[2] != '' && attack == 'secondLine_3'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && secondLine[2] != '' && attack == 'secondLine_3'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && thirdLine[0] === '' && attack == 'thirdLine_1'){
+                if(botAttacking && gameMode === 'pvb' && thirdLine[0] === '' && attack == 'thirdLine_1'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     thirdLine[0] ='O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && thirdLine[0] != '' && attack == 'thirdLine_1'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && thirdLine[0] != '' && attack == 'thirdLine_1'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && thirdLine[1] === '' && attack == 'thirdLine_2'){
+                if(botAttacking && gameMode === 'pvb' && thirdLine[1] === '' && attack == 'thirdLine_2'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     thirdLine[1] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && thirdLine[1] != '' && attack == 'thirdLine_2'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && thirdLine[1] != '' && attack == 'thirdLine_2'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
 
-                if(gameMode === 'pvb' && thirdLine[2] === '' && attack == 'thirdLine_3'){
+                if(botAttacking && gameMode === 'pvb' && thirdLine[2] === '' && attack == 'thirdLine_3'){
                     document.getElementById(`${attack}`).innerHTML ="O";
                     thirdLine[2] = 'O'
                     player_1.attacking = true;
-                }else if(gameMode === 'pvb' && thirdLine[2] != '' && attack == 'thirdLine_3'){
+                    botAttacking = false;
+                }else if(botAttacking && gameMode === 'pvb' && thirdLine[2] != '' && attack == 'thirdLine_3'){
                     Swal.fire({title:'Your enemy pass, its your turn!',
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
                         player_1.attacking = true;
+                        botAttacking = false;
                     }
                     })
                 }
@@ -303,10 +325,13 @@ const pvpGame = ()=>{
                 firstLine[1] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                if(gameMode === 'pvb'){
-                    rands();
-                }
-                
+
+                    if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = true;
+                    }else if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = false;
+                    }
+
             }else if(gameMode === 'pvp' && firstLine[1] === '' && player_2.attacking && id == 'firstLine_2'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 firstLine[1] = player_2.attack
@@ -320,9 +345,13 @@ const pvpGame = ()=>{
                 firstLine[2] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                if(gameMode === 'pvb'){
-                    rands();
+
+                if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = true;
+                }else if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = false;
                 }
+
             }else if(gameMode === 'pvp' && firstLine[2] === '' && player_2.attacking && id == 'firstLine_3'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 firstLine[2] = player_2.attack
@@ -335,9 +364,13 @@ const pvpGame = ()=>{
                 secondLine[0] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                if(gameMode === 'pvb'){
-                    rands();
+
+                if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = true;
+                }else if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = false;
                 }
+
             }else if(gameMode === 'pvp' && secondLine[0] === '' && player_2.attacking && id == 'secondLine_1'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 secondLine[0] = player_2.attack
@@ -351,9 +384,13 @@ const pvpGame = ()=>{
                 secondLine[1] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                if(gameMode === 'pvb'){
-                    rands();
+
+                if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = true;
+                }else if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = false;
                 }
+
             }else if(gameMode === 'pvp' && secondLine[1] === '' && player_2.attacking && id == 'secondLine_2'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 secondLine[1] = player_2.attack
@@ -366,9 +403,13 @@ const pvpGame = ()=>{
                 secondLine[2] = player_1.attack
                 player_1.attacking = false;
                 player_2.attacking = true;
-                if(gameMode === 'pvb'){
-                    rands();
+
+                if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = true;
+                }else if(gameMode === 'pvb' && !botAttacking){
+                    botAttacking = false;
                 }
+
             }else if(gameMode === 'pvp' && secondLine[2] === '' && player_2.attacking && id == 'secondLine_3'){
                 document.getElementById(`${id}`).innerHTML = player_2.attack;
                 secondLine[2] = player_2.attack
@@ -382,9 +423,13 @@ const pvpGame = ()=>{
                     thirdLine[0] = player_1.attack
                     player_1.attacking = false;
                     player_2.attacking = true;
-                    if(gameMode === 'pvb'){
-                        rands();
+
+                    if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = true;
+                    }else if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = false;
                     }
+
                 }else if(gameMode === 'pvp' && thirdLine[0] === '' && player_2.attacking && id == 'thirdLine_1'){
                     document.getElementById(`${id}`).innerHTML = player_2.attack;
                     thirdLine[0] = player_2.attack
@@ -398,9 +443,13 @@ const pvpGame = ()=>{
                     thirdLine[1] = player_1.attack
                     player_1.attacking = false;
                     player_2.attacking = true;
-                    if(gameMode === 'pvb'){
-                        rands();
+
+                    if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = true;
+                    }else if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = false;
                     }
+
                 }else if(gameMode === 'pvp' && thirdLine[1] === '' && player_2.attacking && id == 'thirdLine_2'){
                     document.getElementById(`${id}`).innerHTML = player_2.attack;
                     thirdLine[1] = player_2.attack
@@ -413,9 +462,13 @@ const pvpGame = ()=>{
                     thirdLine[2] = player_1.attack
                     player_1.attacking = false;
                     player_2.attacking = true;
-                    if(gameMode === 'pvb'){
-                        rands();
+
+                    if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = true;
+                    }else if(gameMode === 'pvb' && !botAttacking){
+                        botAttacking = false;
                     }
+
                 }else if(gameMode === 'pvp' && thirdLine[2] === '' && player_2.attacking && id == 'thirdLine_3'){
                     document.getElementById(`${id}`).innerHTML = player_2.attack;
                     thirdLine[2] = player_2.attack
@@ -430,6 +483,9 @@ const pvpGame = ()=>{
         if(firstLine[0] === 'X' && firstLine[1] === 'X' && firstLine[2] === 'X'||firstLine[0] === 'O' && firstLine[1] === 'O' && firstLine[2] === 'O'){
             
             if(firstLine[0] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -453,6 +509,9 @@ const pvpGame = ()=>{
         }else if(secondLine[0] === 'X' && secondLine[1] === 'X' && secondLine[2] === 'X' || secondLine[0] === 'O' && secondLine[1] === 'O' && secondLine[2] === 'O'){
 
             if(secondLine[0] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -474,6 +533,9 @@ const pvpGame = ()=>{
 
         }else if(thirdLine[0] === 'X' && thirdLine[1] === 'X' && thirdLine[2] === 'X' || thirdLine[0] === 'O' && thirdLine[1] === 'O' && thirdLine[2] === 'O'){
             if(thirdLine[0] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -496,6 +558,9 @@ const pvpGame = ()=>{
         }else if(firstLine[0] === 'X' && secondLine[0] === 'X' && thirdLine[0] === 'X' || firstLine[0] === 'O' && secondLine[0] === 'O' && thirdLine[0] === 'O'){
 
             if(firstLine[0] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -518,6 +583,9 @@ const pvpGame = ()=>{
         }else if(firstLine[1] === 'X' && secondLine[1] === 'X' && thirdLine[1] === 'X' || firstLine[1] === 'O' && secondLine[1] === 'O' && thirdLine[1] === 'O'){
 
             if(firstLine[1] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -540,6 +608,9 @@ const pvpGame = ()=>{
         }else if(firstLine[2] === 'X' && secondLine[2] === 'X' && thirdLine[2] === 'X' || firstLine[2] === 'O' && secondLine[2] === 'O' && thirdLine[2] === 'O'){
 
             if(firstLine[2] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -561,6 +632,9 @@ const pvpGame = ()=>{
 
         }else if(firstLine[0] === 'X' && secondLine[1] === 'X' && thirdLine[2] === 'X' || firstLine[0] === 'O' && secondLine[1] === 'O' && thirdLine[2] === 'O'){
             if(firstLine[0] === 'X'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -583,6 +657,9 @@ const pvpGame = ()=>{
         }else if(firstLine[2] === 'X' && secondLine[1] === 'X' && thirdLine[0] === 'X' || firstLine[2] === 'O' && secondLine[1] === 'O' && thirdLine[0] === 'O'){
 
             if(firstLine[2] === 'x'){
+                if(gameMode === 'pvb' && botAttacking){
+                    botAttacking=false;
+                }
                 Swal.fire({title:`${player_1_name} win!`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -627,6 +704,7 @@ const pvpGame = ()=>{
         
 
         if(gameRounds === 5 && player_1_Score === 5){
+            botAttacking=false;
             Swal.fire({title:`${player_1_name} win! - Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -637,6 +715,7 @@ const pvpGame = ()=>{
                     }
                 })
         }else if(gameRounds === 5 && player_2_Score === 5){
+            botAttacking=false;
             Swal.fire({title:`${player_2_name} win! - Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -647,6 +726,7 @@ const pvpGame = ()=>{
                     }
                 })
         }else if(gameRounds === 5 && tieScore === 5){
+            botAttacking=false;
             Swal.fire({title:`Tie! - Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -659,6 +739,7 @@ const pvpGame = ()=>{
         }
 
         if(gameRounds === 10 && player_1_Score === 10){
+            botAttacking=false;
             Swal.fire({title:`${player_1_name} win! - Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -670,6 +751,7 @@ const pvpGame = ()=>{
                 })
                 document.querySelector('.playerScores').style.display = 'none';
         }else if(gameRounds === 10 && player_2_Score === 10){
+            botAttacking=false;
             Swal.fire({title:`${player_2_name} win! - Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -680,6 +762,7 @@ const pvpGame = ()=>{
                     }
                 })
         }else if(gameRounds === 10 && tieScore === 10){
+            botAttacking=false;
             Swal.fire({title:`Tie!. Final Scores ${player_1_Score} : ${player_2_Score}`,
                             allowOutsideClick: false}).then((result)=>{
                     if(result['isConfirmed']){
@@ -709,6 +792,7 @@ const pvpGame = ()=>{
 
         player_1.attacking = true;
         player_2.attacking = false;
+        botAttacking=false;
     }
 }
 // pvpGame();
